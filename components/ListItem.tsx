@@ -1,17 +1,24 @@
 import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 type Props = {
   imageUrl: string;
   title: string;
   author: string;
+  onPress: () => void;
 };
 
-const ListItem = ({ imageUrl, title, author }: Props) => {
+const ListItem = ({ imageUrl, title, author, onPress }: Props) => {
   return (
-    <View style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
       <View style={styles.leftContainer}>
-        <Image style={{ width: 100, height: 100 }} source={{ uri: imageUrl }} />
+        {!!imageUrl && (
+          <Image
+            style={{ width: 100, height: 100 }}
+            source={{ uri: imageUrl }}
+          />
+        )}
       </View>
       <View style={styles.rightContainer}>
         <Text numberOfLines={3} style={styles.text}>
@@ -19,7 +26,7 @@ const ListItem = ({ imageUrl, title, author }: Props) => {
         </Text>
         <Text style={styles.subText}>{author}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
