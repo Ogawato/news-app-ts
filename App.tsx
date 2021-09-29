@@ -1,8 +1,7 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { HomeScreen } from "./screens/HomeScreen";
+import { Provider } from "react-redux";
 import { AppNavigator } from "./navigation/AppNavigator";
+import store from "./store";
 
 // type Props = {
 //   imageUrl: string;
@@ -11,5 +10,9 @@ import { AppNavigator } from "./navigation/AppNavigator";
 // };
 
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  );
 }
